@@ -1,26 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define STRING_SIZE 256
 
 void reverse(char* string)
 {
-  char* back = string;
-  char tmp;
+  char back[STRING_SIZE];
+  int i, length = strlen(string) - 1;
 
-  while(*back)
-    ++back;
-
-  // Move from the null terminator
-  --back;
-
-  while (string < back)
-  {
-    char tmp = *string;
-    *string = *back;
-    *back = tmp;
-
-    ++string;
-    --back;
-  }
+  for(i = length; i >= 0; i--)
+    back[length - i] = string[i];
+  
+  strcpy(string, back);
 }
 
 int main()
@@ -31,7 +23,7 @@ int main()
   if (file_ptr == NULL)
     return 1;
 
-  char* string = malloc(256);
+  char* string = malloc(STRING_SIZE);
 
   fscanf(file_ptr, "%s", string);
 
