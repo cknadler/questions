@@ -16,12 +16,11 @@ int main()
   // Solution
 
   int ascii_table[256];
-  int length = sprintf(string, "%s", string);
 
-  size_t i;
-  for (i = 0; i < length; ++i)
+  char* iter = string;
+  while(*iter)
   {
-    int value = (int) string[i];
+    int value = (int) *iter;
     
     if (ascii_table[value] == 1)
     {
@@ -32,8 +31,12 @@ int main()
     {
       ascii_table[value] = 1;
     }
+
+    ++iter;
   }
 
   printf("String %s has unique characters\n", string);
+
+  free(string);
   return 0;
 }
