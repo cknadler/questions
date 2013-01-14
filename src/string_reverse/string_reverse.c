@@ -1,6 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
+
+void reverse(char* string)
+{
+  char* back = string;
+  char tmp;
+
+  while(*back)
+    ++back;
+
+  // Move from the null terminator
+  --back;
+
+  while (string < back)
+  {
+    char tmp = *string;
+    *string = *back;
+    *back = tmp;
+
+    ++string;
+    --back;
+  }
+}
 
 int main()
 {
@@ -15,23 +36,7 @@ int main()
   fscanf(file_ptr, "%s", string);
 
   // Solution
-  
-  int length = sprintf(string, "%s", string);
-  
-  int front = 0;
-  int back = length - 1;
-
-  while(front < back)
-  {
-    // swap 2 characters
-    char tmp = string[front];
-    string[front] = string[back];
-    string[back] = tmp;
-
-    ++front;
-    --back;
-  }
-
+  reverse(string);
   printf("%s\n", string);
 
   return 0;
