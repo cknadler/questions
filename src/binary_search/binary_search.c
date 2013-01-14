@@ -103,7 +103,10 @@ int main()
   while (data[right_bound] != TARGET)
     --right_bound;
 
+  free(data);
+
   printf("%d was found %d times\n", TARGET, right_bound - left_bound + 1);
+
 
   return 0;
 }
