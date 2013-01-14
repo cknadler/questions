@@ -6,13 +6,21 @@
 
 void reverse(char* string)
 {
-  char back[STRING_SIZE];
-  int i, length = strlen(string) - 1;
+  char* back = string;
+  char tmp;
 
-  for(i = length; i >= 0; i--)
-    back[length - i] = string[i];
-  
-  strcpy(string, back);
+  while (*back)
+    ++back;
+
+  while (back > string)
+  {
+    tmp = *string;
+    *string = *back;
+    *back = tmp;
+
+    ++string;
+    --back;
+  }
 }
 
 int main()
